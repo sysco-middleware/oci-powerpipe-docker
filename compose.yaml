@@ -15,7 +15,7 @@ services:
       - ./sp/init.sh:/home/steampipe/init.sh:ro
       - ./sp/run.sh:/home/steampipe/run.sh:rw
       - ./sp:/home/steampipe:rw
-      - /Users/<user>/.ssh/:/home/steampipe/.ssh/:ro
+      - /Users/<user>¨å¨å/.ssh/:/home/steampipe/.ssh/:ro
 
   powerpipe:
     build:

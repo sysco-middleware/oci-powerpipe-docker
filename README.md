@@ -23,7 +23,7 @@ The entrypoint for this setup is the compose.yaml file. It defines 2 services
   - init.sh: is used to start the steampipe service.
   - run.sh: can be used to run commands at later point. For ex: installing new plugin
 - *Mount the oci-private-key from the host* . We will need this to configure oci plugin
-- start the steampipe container `podman-compose down && podman-compose up -d`
+- start the steampipe container `podman-compose down steampipe && podman-compose up -d steampipe`
 - wait for few seconds and check if container is running `podman-compose ps`
    ```shell
   podman-compose ps
@@ -32,7 +32,7 @@ The entrypoint for this setup is the compose.yaml file. It defines 2 services
   ```
   - install oci plugin 
     - update the [run.sh](sp/run.sh) with command you want to execute. For example `steampipe plugin install oci`
-    - execute [run.sh](sp/run.sh) 
+    - execute [run.sh](sp/run.sh) `podman-compose exec steampipe /bin/sh /home/steampipe/run.sh`
     ```shell
     podman-compose exec steampipe /bin/sh /home/steampipe/run.sh 
     oci [====================================================================>] Done
@@ -77,7 +77,7 @@ The entrypoint for this setup is the compose.yaml file. It defines 2 services
 
   ```      
 - Copy and replace the connection string in  [pp/init.sh](pp/init.sh) and [pp/run.sh](pp/run.sh). Make sure to rename the host to `steampipe` instead of `127.0.0.1`
-- Start the containers `podman-compose down && podman-compose up -d`
+- Start the containers `podman-compose down powerpipe && podman-compose up -d powerpipe`
 - validate the container status `podman-compose ps `
 - ```shell
   podman-compose ps 
@@ -87,9 +87,9 @@ The entrypoint for this setup is the compose.yaml file. It defines 2 services
   ```          
 - install the oci plugin for powerpipe 
   - update **pp/run.sh** script with the mod that you want to install
-  - run ` podman-compose exec powerpipe /home/powerpipe/run.sh ` 
+  - run ` podman-compose exec powerpipe  /bin/sh /home/powerpipe/run.sh ` 
 - run the oci benchmark
   - comment the previous commands in  **pp/run.sh**
   - add command to run the benchmark
-  - run the benchmark `podman-compose exec powerpipe /home/powerpipe/run.sh `
+  - run the benchmark `podman-compose exec powerpipe  /bin/sh /home/powerpipe/run.sh `
   - the compliance file will be available under `pp/mod/.powerpipe` directory
