@@ -23,6 +23,7 @@ The entrypoint for this setup is the compose.yaml file. It defines 2 services
   - init.sh: is used to start the steampipe service.
   - run.sh: can be used to run commands at later point. For ex: installing new plugin
 - *Mount the oci-private-key from the host* . We will need this to configure oci plugin
+  - place the oci-private-key under **pkey** dir. On host, the .ssh directory is protected, so its tricky attach it to container with correct permissions 
 - start the steampipe container `podman-compose down steampipe && podman-compose up -d steampipe`
 - wait for few seconds and check if container is running `podman-compose ps`
    ```shell
