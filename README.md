@@ -93,4 +93,4 @@ The entrypoint for this setup is the compose.yaml file. It defines 2 services
   - comment the previous commands in  **pp/run.sh**
   - add command to run the benchmark
   - run the benchmark `podman-compose exec powerpipe  /bin/sh /home/powerpipe/run.sh `
-  - the compliance file will be available under `pp/mod/.powerpipe` directory
+  - the compliance file will be available under `pp/mod/` directory
