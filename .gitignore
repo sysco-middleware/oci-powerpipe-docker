@@ -1,0 +1,13 @@
+sp/.pipes
+sp/.steampipe/config
+sp/.steampipe/internal
+sp/.steampipe/logs
+sp/.steampipe/plugins
+sp/.steampipe/db/14.2.0/postgres
+sp/.steampipe/db/14.2.0/data/**
+sp/.steampipe/db/**.json
+
+
+pp/.powerpipe
+pp/mod
+.idea

@@ -1,0 +1,35 @@
+---
+version: '3.8'
+networks:
+  nw_steampipe:
+services:
+  steampipe:
+    container_name: steampipe
+    image: turbot/steampipe:latest
+    ports:
+      - 9193:9193
+    entrypoint: [ "bash", "-c", "sh /home/steampipe/init.sh"]
+    networks:
+      - nw_steampipe
+    volumes:
+      - ./sp/init.sh:/home/steampipe/init.sh:ro
+      - ./sp/run.sh:/home/steampipe/run.sh:rw
+      - ./sp:/home/steampipe:rw
+      - /Users/<user>/.ssh/:/home/steampipe/.ssh/:ro
+
+  powerpipe:
+    build:
+      context: pp
+      dockerfile: Dockerfile
+    container_name: powerpipe
+    entrypoint: [ "bash", "-c", "sh /home/powerpipe/init.sh"]
+    ports:
+      - 9033:9033
+    networks:
+      - nw_steampipe
+    depends_on:
+      - steampipe
+    volumes:
+      - ./pp:/home/powerpipe:rw
+      - ./pp/init.sh:/home/powerpipe/init.sh:rw
+      - ./pp/run.sh:/home/powerpipe/run.sh:rw

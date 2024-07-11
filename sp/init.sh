@@ -1,0 +1,1 @@
+steampipe service start --foreground
